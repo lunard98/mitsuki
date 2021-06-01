@@ -1,0 +1,16 @@
+pipeline{
+    agent any
+    
+    stages {
+       stage('ok') {
+           steps{
+               echo "ok"
+            }
+        }
+    }
+    post {
+        always {
+            emailtext body: "A TEST EMAIL", recipientproviders: [[$class: DevelopersRecipientProvider'],[$class: RequesterRecipientProvider']], subject: 'test'
+        }
+    }
+}
